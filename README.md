@@ -1,4 +1,8 @@
 # Logistic regression
+
+![interface](https://raw.githubusercontent.com/guihardbastien/Logistic_regression/master/src/doc/interface.gif =250x)
+
+
 ## Deployment
 ```
 npm install
