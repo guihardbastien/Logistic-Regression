@@ -72,15 +72,11 @@ class App extends React.Component {
                 //convex cost function => cross enthropy
                 //let cost = (1 / m) * (-d[2] * Math.log(predictedLabel) - (1 - d[2]) * -d[2] * Math.log(1 - predictedLabel));
 
-                let bufferW0 = w0;
-                let bufferW1 = w1;
-                let bufferW2 = w2;
-
                 //C′=x(s(z)−y) => cost's gradient
                 //gradient descent
-                w0 = bufferW0 - learningRate * ((error));
-                w1 = bufferW1 - learningRate  * ((error) * d[0]);
-                w2 = bufferW2 - learningRate  * ((error) * d[1]);
+                w0 = w0 - learningRate * ((error));
+                w1 = w1 - learningRate  * ((error) * d[0]);
+                w2 = w2 - learningRate  * ((error) * d[1]);
             });
 
             accuracy.push(error)
