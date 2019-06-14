@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Nixie+One');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body {
+    /*background: #202125;*/
+    background-image: linear-gradient(#595d68, #000000);
+    margin: 0;
+    height: 100vh;
+    font-family: 'Courier New', sans-serif;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.header {
+    position: relative;
+    width: 100vw;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+
+}
+
+.name {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    color: gray;
+    z-index: 10;
+}
+
+.data {
+    position: absolute;
+    top: 100vh;
+    transform: translateY(-120%);
+    margin: 20px;
+}
+
+.prediction {
+    position: absolute;
+    width: 1000px;
+    display: flex;
+    justify-content: space-evenly;
+    top: 35vh;
+    left: 10px;
+    transform: translate(0,-50%);
+    color: white;
+    font-size: 0.7rem;
+}
+.prediction p {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(110%,-150%);
+    color: white;
+    font-size: 3rem;
+    font-family: 'Nixie One', sans-serif;
+    width: 400px;
+}
+
+.log {
+    box-sizing: border-box;
+    position: fixed;
+    margin-right: 30px;
+    margin-top: 60px;
+    right: 0;
+    top: 0;
+    background-color: rgba(122, 121, 120, 0.2);
+    width: 270px;
+    height: 550px;
+    text-align: left;
+    color: white;
+    border-radius: 3px;
+    font-family: 'Courier New', sans-serif;
+    padding: 20px;
+    border: solid yellow 1px;
+}
+.log p{
+    font-size: 0.7rem;
+    color: #8e96a8;
+}
+.log b{
+    color: white;
+}
+.randomBtn{
+    position: absolute;
+    margin: 5px;
+    top: 0;
+    left: 0;
+    height: 30px;
+    border: none;
+    background-color: gray;
+    color: #b7b7b7;
+    border-radius: 2px;
+    //transition: all 0.3s;
+    animation: glow 0.7s ease-in infinite alternate;
+}
+
+.randomBtn:hover{
+    border: solid yellow 1px;
+    color: white;
+    animation: none;
+}
+
+@keyframes glow {
+    from {
+        color: #b7b7b7;
+        margin-left: 5px;
+    }
+    to {
+        color: white;
+        margin-left: 10px;
+    }
+}
