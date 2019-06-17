@@ -5,6 +5,7 @@ class Metrics extends Component {
 
     render() {
 
+        // pie chart data
         const dataPie = [
             {
                 name: 'Likelihood of being yellow',
@@ -15,6 +16,7 @@ class Metrics extends Component {
                 value: 1 - this.props.output
             }];
 
+        // area chart data
         let dataArea = [];
         let accuracy = this.props.accuracy;
         accuracy.map((d, index) => {

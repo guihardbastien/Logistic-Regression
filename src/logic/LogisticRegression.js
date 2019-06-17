@@ -3,9 +3,12 @@ class LogisticRegression {
     _dataSet = [];
     _theta = [0, 0, 0];
     _accuracy = [];
+    _cost = [];
 
     constructor(epochs, learningRate, totalData) {
+        //generates dataset
         this._dataSet = LogisticRegression.generateData(totalData);
+        //trains the model
         this.gradientDescent(learningRate, epochs, this.dataSet);
     }
 
@@ -22,9 +25,9 @@ class LogisticRegression {
     }
 
     //convex cost function
-    crossEntropy(d, predictedLabel) {
+    crossEntropy(label, predictedLabel) {
         let m = this._dataSet.length;
-        return (1 / m) * (-d[2] * Math.log(predictedLabel) - (1 - d[2]) * -d[2] * Math.log(1 - predictedLabel));
+        return (1 / m) * (-label * Math.log(predictedLabel) - (1 - label) * -label * Math.log(1 - predictedLabel));
     }
 
 
@@ -46,40 +49,41 @@ class LogisticRegression {
         return data
     }
 
-    //returns theta after "epoch" optimizations & accuracy
+    //returns theta after "epoch" optimizations & updates accuracy and cost
     gradientDescent(learningRate, epochs, data) {
 
         //theta weights
-        let w0 = 0,
-            w1 = 0,
-            w2 = 0;
-
-        //overtime error
-        let error;
+        let W = this._theta;
+        let error = 0;
+        let cost = 0;
 
         for (let i = 0; i < epochs; i++) {
             data.map(d => {
 
-                let z = w0 + d[0] * w1 + d[1] * w2;
+                // z = w0 + w1*x1 + w2*x2
+                let z = W[0] + d[0] * W[1] + d[1] * W[2];
 
                 //sigmoid activation
                 let predictedLabel = LogisticRegression.sigmoidFunction(z);
                 error = predictedLabel - d[2];
 
                 //calculating cost
-                let cost = this.crossEntropy(d, predictedLabel);
+                cost = this.crossEntropy(d[2], predictedLabel);
 
-                //C′=x(s(z)−y) => cost's gradient
-                w0 = w0 - learningRate * ((error));
-                w1 = w1 - learningRate * ((error) * d[0]);
-                w2 = w2 - learningRate * ((error) * d[1]);
+                //Gradient descent | C′=x(s(z)−y) => cost's gradient
+                W[0] = W[0] - learningRate * ((error));
+                W[1] = W[1] - learningRate * ((error) * d[0]);
+                W[2] = W[2] - learningRate * ((error) * d[1]);
             });
-            this._accuracy.push(error)
+
+            this._accuracy.push(error);
+            this._cost.push(cost);
         }
-        this._theta = [w0, w1, w2];
+
+        this._theta = W;
     }
 
-    //prediction on random data using optimized theta
+    //prediction on random data using trained theta
     randomPrediction() {
         let x1 = LogisticRegression.getRandomFloat(0, 12);
         let x2 = LogisticRegression.getRandomFloat(0, 12);
@@ -100,6 +104,10 @@ class LogisticRegression {
 
     get accuracy() {
         return this._accuracy;
+    }
+
+    get cost() {
+        return this._cost;
     }
 }
 
