@@ -21,11 +21,9 @@ class Charts extends React.Component {
     }
 
     updatePredictionData() {
-        let x1 = this.props.randomFunc(0, 12);
-        let x2 = this.props.randomFunc(0, 12);
-        let callbackData = this.props.callback(x1,x2,this.state.theta);
-        this.setState({predictionData: [x1,x2]});
-        this.setState({predictionOutput: callbackData});
+        let callbackData = this.props.callback();
+        this.setState({predictionData: [callbackData.x1,callbackData.x2]});
+        this.setState({predictionOutput: callbackData.prediction});
     }
 
     render() {

@@ -5,13 +5,7 @@ class Metrics extends Component {
 
     render() {
 
-        let data = [];
-        let accuracy = this.props.accuracy;
-        accuracy.map((d, index) => {
-            data.push({x: index, Accuracy: d,});
-        });
-
-        const data02 = [
+        const dataPie = [
             {
                 name: 'Likelihood of being yellow',
                 value: this.props.output
@@ -21,16 +15,22 @@ class Metrics extends Component {
                 value: 1 - this.props.output
             }];
 
+        let dataArea = [];
+        let accuracy = this.props.accuracy;
+        accuracy.map((d, index) => {
+            dataArea.push({x: index, Accuracy: d,});
+        });
+
         return (
 
             <div className="prediction">
                 <PieChart width={220} height={230}>
-                    <Pie data={data02} innerRadius={60} outerRadius={80} stroke="none">
+                    <Pie data={dataPie} innerRadius={60} outerRadius={80} stroke="none">
                         <Cell fill='yellow'/>
                     </Pie>
                     <Legend/>
                 </PieChart>
-                <AreaChart width={600} height={200} data={data}
+                <AreaChart width={600} height={200} data={dataArea}
                            margin={{top: 10, right: 30, left: 0, bottom: 0}}>
                     <XAxis dataKey="x"/>
                     <YAxis dataKey="Accuracy"/>
