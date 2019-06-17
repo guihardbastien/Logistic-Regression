@@ -1,6 +1,6 @@
 # Logistic regression
 
-![interface](https://raw.githubusercontent.com/guihardbastien/Logistic_regression/master/doc/interface.gif)
+![interface](https://raw.githubusercontent.com/guihardbastien/Logistic-Regression/master/doc/interface.gif)
 
 
 ## Deployment
